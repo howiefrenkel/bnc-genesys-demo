@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Solutions bancaires aux particuliers | Banque Nationale - DEMO</title>
+  <meta name="description" content="DEMO page for Genesys Cloud Messenger testing. Not an official Banque Nationale website.">
+
+  <!-- Genesys Cloud Messenger snippet: pasted in the <head> as required by Genesys deployment guidance. -->
+  <script type="text/javascript" charset="utf-8">
+    (function (g, e, n, es, ys) {
+      g['_genesysJs'] = e;
+      g[e] = g[e] || function () {
+        (g[e].q = g[e].q || []).push(arguments)
+      };
+      g[e].t = 1 * new Date();
+      g[e].c = es;
+      ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+    })(window, 'Genesys', 'https://apps.mypurecloud.com/genesys-bootstrap/genesys.min.js', {
+      environment: 'prod',
+      deploymentId: 'a707bd5a-1fba-4740-ac88-c88cd201f4da'
+    });
+  </script>
+
+  <!-- Messenger helper: opens Messenger when ready and provides a visible fallback button. -->
+  <script>
+    window.__messengerStatus = 'Snippet queued';
+    function setMessengerStatus(msg) {
+      window.__messengerStatus = msg;
+      var el = document.getElementById('genesys-status');
+      if (el) el.textContent = msg;
+    }
+    function openGenesysMessenger() {
+      if (!window.Genesys) {
+        setMessengerStatus('Genesys() is not available yet. Check that the bootstrap script loaded and that this page is served over https/http, not blocked locally.');
+        return;
+      }
+      try {
+        Genesys('command', 'Messenger.open', {},
+          function () { setMessengerStatus('Messenger opened successfully.'); },
+          function (error) { setMessengerStatus('Messenger did not open: ' + (error && (error.message || error) || 'unknown error')); }
+        );
+      } catch (e) {
+        setMessengerStatus('Messenger open command failed: ' + e.message);
+      }
+    }
+    if (window.Genesys) {
+      Genesys('subscribe', 'Messenger.ready', function () {
+        setMessengerStatus('Messenger.ready received. Opening Messenger...');
+        setTimeout(openGenesysMessenger, 650);
+      });
+      Genesys('subscribe', 'Messenger.opened', function () { setMessengerStatus('Messenger is open.'); });
+      Genesys('subscribe', 'Messenger.closed', function () { setMessengerStatus('Messenger closed. Use the red demo chat button to reopen it.'); });
+    }
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        if (window.__messengerStatus === 'Snippet queued') {
+          setMessengerStatus('Waiting for Messenger.ready. If it never appears, verify the deployment is Active, has an assigned configuration, an Architect inbound message flow, and allows this domain.');
+        }
+      }, 3500);
+    });
+  </script>
+
+  <style>
+    :root{
+      --red:#e30613;--red2:#d0021b;--black:#1d1d1d;--text:#222;--muted:#555;--line:#d8d8d8;--light:#f5f5f5;--pale:#f8f8f8;--max:1200px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    *{box-sizing:border-box} body{margin:0;color:var(--text);background:#fff;font-size:16px;line-height:1.42} a{color:inherit;text-decoration:none} a:hover{text-decoration:underline} img{max-width:100%;display:block}.container{max-width:var(--max);margin:0 auto;padding:0 24px}.sr{position:absolute;left:-10000px}.demo-strip{background:#111;color:#fff;text-align:center;font-weight:700;font-size:13px;padding:8px 20px;letter-spacing:.02em}.demo-strip b{color:#ffd84d}.skip{position:absolute;left:-9999px;top:8px;background:#fff;color:#000;padding:10px;border:2px solid #000;z-index:1000}.skip:focus{left:8px}
+    .top{background:#fff;border-bottom:1px solid var(--line);font-size:14px}.top .container{height:45px;display:flex;align-items:center;justify-content:space-between}.top ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}.top-left a{font-weight:700}.top-right a{color:#333}.masthead{background:#fff;border-bottom:1px solid #cfcfcf;position:sticky;top:0;z-index:20;box-shadow:0 2px 5px rgba(0,0,0,.08)}.head-row{height:82px;display:flex;align-items:center;justify-content:space-between;gap:28px}.brand{display:flex;align-items:center;gap:14px}.brand img{width:155px;height:auto}.demo-badge{background:#fff0f1;border:1px solid #ffbfc5;color:var(--red);font-weight:800;font-size:12px;letter-spacing:.05em;padding:3px 8px;border-radius:2px}.actions{display:flex;align-items:center;gap:0}.client{height:48px;border:1px solid var(--red);color:var(--red);padding:14px 22px;font-weight:700;background:#fff}.login{height:48px;background:var(--red);color:#fff;padding:14px 24px;font-weight:700;border:1px solid var(--red);margin-left:12px}.nav-row{border-top:1px solid var(--line)}.mainnav{height:59px;display:flex;align-items:center}.mainnav ul{display:flex;list-style:none;margin:0;padding:0;gap:0;white-space:nowrap}.mainnav a{display:block;padding:19px 17px 17px;font-weight:700;border-bottom:4px solid transparent}.mainnav a:hover{border-bottom-color:var(--red);text-decoration:none}.notice{background:#fff;border-bottom:1px solid var(--line)}.notice .container{min-height:58px;display:flex;align-items:center;gap:14px}.warning-icon{width:34px;height:34px;border-radius:50%;background:#f6c344;color:#111;display:flex;align-items:center;justify-content:center;font-weight:900}.notice a{color:#b00020;text-decoration:underline}.hero{background:#f6f6f6}.hero-wrap{display:grid;grid-template-columns:1fr 1.05fr;min-height:430px}.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:58px 42px 58px 0}.hero-copy h1{font-size:56px;line-height:1.02;margin:0 0 18px;font-weight:800;letter-spacing:-.025em}.hero-copy p{font-size:22px;margin:0 0 28px}.cta{display:inline-flex;align-items:center;justify-content:center;background:var(--red);border:2px solid var(--red);color:#fff;font-weight:800;padding:14px 28px;min-height:50px;width:max-content}.cta:hover{text-decoration:none;background:#b9000c}.hero-art{position:relative;overflow:hidden;background:linear-gradient(135deg,#ececec,#fff)}.hero-art:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 60% 44%, #fff 0 24%, transparent 25%),linear-gradient(120deg,transparent 0 25%,rgba(227,6,19,.92) 25% 30%,transparent 30% 100%)}.portrait{position:absolute;right:0;bottom:0;width:72%;height:96%;background:linear-gradient(180deg,#f7f1ea,#d8cec6);clip-path:polygon(18% 0,100% 0,100% 100%,0 100%,0 18%);border-left:1px solid #ddd}.portrait:before{content:"";position:absolute;right:25%;top:14%;width:145px;height:145px;border-radius:50%;background:#4b332d;box-shadow:0 150px 0 70px #dfd6cf}.portrait:after{content:"DEMO";position:absolute;right:22px;bottom:18px;font-size:64px;font-weight:900;color:rgba(227,6,19,.2);letter-spacing:.07em}.promos{background:#fff;margin-top:-42px;position:relative;z-index:3}.promo-grid{display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 2px 12px rgba(0,0,0,.18);background:#fff}.promo{min-height:212px;padding:28px 32px;border-right:1px solid var(--line);display:flex;flex-direction:column;position:relative}.promo:last-child{border-right:0}.promo:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--red)}.promo .mini-img{height:54px;margin-bottom:18px}.promo h2{font-size:23px;margin:0 0 10px}.promo p{margin:0 0 16px;color:#333}.promo a{margin-top:auto;color:var(--red);font-weight:800}.section{padding:60px 0}.section h2{font-size:36px;margin:0 0 32px;letter-spacing:-.02em}.services{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.service{min-height:150px;padding:26px 18px;text-align:center;border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;font-weight:700;font-size:18px;background:#fff}.service:last-child{border-right:0}.service img{height:52px;width:52px}.service:hover{background:#fafafa;text-decoration:none}.advice-intro{display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:end;margin-bottom:28px}.advice-intro h2{margin-bottom:16px}.advice-intro p{font-size:18px;margin:0;color:#333}.advice-img{height:190px;background:#eef7f7;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}.advice-img:after{content:"DEMO";font-weight:900;font-size:70px;color:rgba(227,6,19,.18)}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.card{border:1px solid var(--line);background:#fff;min-height:310px;display:flex;flex-direction:column}.card-pic{height:145px;background:#f0f0f0;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);overflow:hidden}.card-pic img{width:100%;height:100%;object-fit:cover}.card-pic.placeholder:after{content:"DEMO";font-size:54px;font-weight:900;color:rgba(227,6,19,.18)}.card-body{padding:24px;display:flex;flex-direction:column;flex:1}.card h3{font-size:23px;line-height:1.2;margin:0 0 12px}.card p{margin:0 0 20px;color:#333}.card a{margin-top:auto;color:var(--red);font-weight:800}.help{background:#f6f6f6;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.help-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--line)}.help-card{padding:34px 32px;min-height:252px;border-right:1px solid var(--line)}.help-card:last-child{border-right:0}.help-card .bigicon{height:62px;width:62px;margin-bottom:20px}.help-card h3{font-size:24px;line-height:1.18;margin:0 0 12px}.help-card p{margin:0 0 18px;color:#333}.help-card a{color:var(--red);font-weight:800}.sadc{padding:30px 0;border-bottom:1px solid var(--line)}.sadc .container{display:flex;align-items:center;gap:18px}.sadc-box{width:46px;height:46px;border:2px solid #111;display:flex;align-items:center;justify-content:center;font-weight:900}.footer{background:#262626;color:#fff}.footer-main{padding:48px 0 34px}.footer-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:30px}.footer h3{font-size:16px;margin:0 0 16px}.footer ul{list-style:none;margin:0;padding:0}.footer li{margin:9px 0}.footer a{color:#fff;font-size:14px}.social{display:flex;gap:10px;margin-top:18px}.social a{height:32px;width:32px;border:1px solid #777;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700}.legal{border-top:1px solid #555;padding:20px 0;color:#ddd;font-size:12px}.legal .container{display:flex;justify-content:space-between;gap:24px;align-items:center}.bottom-logo{width:42px;height:32px;background:var(--red);clip-path:polygon(0 0,78% 0,100% 50%,78% 100%,0 100%,17% 50%)}.floating-open{position:fixed;right:24px;bottom:24px;z-index:40;background:var(--red);color:#fff;border:0;border-radius:999px;padding:16px 22px;font-weight:800;box-shadow:0 12px 30px rgba(0,0,0,.28);cursor:pointer}.status{position:fixed;left:20px;bottom:20px;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 8px 22px rgba(0,0,0,.14);padding:10px 12px;max-width:420px;font-size:12px;color:#333;z-index:39}.status b{color:var(--red)}
+    @media(max-width:980px){.top .container,.head-row{height:auto;padding-top:12px;padding-bottom:12px;align-items:flex-start;flex-direction:column}.mainnav{overflow-x:auto}.hero-wrap,.advice-intro{grid-template-columns:1fr}.hero-copy{padding-right:0}.hero-art{height:310px}.promo-grid,.cards,.help-grid,.footer-grid{grid-template-columns:1fr}.promo,.help-card{border-right:0;border-bottom:1px solid var(--line)}.services{grid-template-columns:repeat(2,1fr)}.service{border-bottom:1px solid var(--line)}.legal .container{flex-direction:column;align-items:flex-start}}
+    @media(max-width:560px){.container{padding:0 16px}.hero-copy h1{font-size:42px}.actions{width:100%;flex-direction:column;align-items:stretch;gap:8px}.client,.login{margin:0;text-align:center}.services{grid-template-columns:1fr}.service{border-right:0}.floating-open{right:14px;bottom:14px}.status{display:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">Aller au contenu de la page</a>
+  <div class="demo-strip"><b>DEMO ONLY</b> — page statique pour démonstration Genesys Cloud Messenger. Aucun service bancaire réel.</div>
+
+  <div class="top">
+    <div class="container">
+      <ul class="top-left">
+        <li><a href="https://www.bnc.ca/particuliers.html">Particuliers</a></li>
+        <li><a href="https://www.bnc.ca/entreprises.html">Entreprises</a></li>
+        <li><a href="https://www.bnc.ca/gestion-de-patrimoine.html">Gestion de patrimoine</a></li>
+        <li><a href="https://www.bnc.ca/a-propos-de-nous.html">À propos de nous</a></li>
+      </ul>
+      <ul class="top-right">
+        <li><a href="#recherche">Rechercher</a></li>
+        <li><a href="https://www.bnc.ca/aide.html">Aide</a></li>
+        <li><a href="https://www.bnc.ca/en.html">En</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <header class="masthead" id="menu">
+    <div class="container head-row">
+      <a class="brand" href="https://www.bnc.ca/">
+        <img src="https://www.bnc.ca/content/dam/bnc/commun/logo/logo-bnc-155x50.svg" alt="Banque Nationale">
+        <span class="demo-badge">DEMO</span>
+      </a>
+      <div class="actions">
+        <a class="client" href="https://www.bnc.ca/devenir-client.html">Devenir client</a>
+        <a class="login" href="https://app.bnc.ca/">Se connecter</a>
+      </div>
+    </div>
+    <div class="nav-row">
+      <nav class="container mainnav" aria-label="Menu principal">
+        <ul>
+          <li><a href="https://www.bnc.ca/particuliers/comptes.html">Comptes bancaires</a></li>
+          <li><a href="https://www.bnc.ca/particuliers/cartes-credit.html">Cartes de crédit</a></li>
+          <li><a href="https://www.bnc.ca/particuliers/emprunts.html">Emprunts</a></li>
+          <li><a href="https://www.bnc.ca/particuliers/hypotheques.html">Hypothèque</a></li>
+          <li><a href="https://www.bnc.ca/particuliers/epargne-placements.html">Épargne et placements</a></li>
+          <li><a href="https://www.bnc.ca/particuliers/assurances.html">Assurances</a></li>
+          <li><a href="https://www.bnc.ca/particuliers/conseils.html">Conseils</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content">
+    <section class="notice">
+      <div class="container">
+        <div class="warning-icon">!</div>
+        <p><b>DEMO.</b> Perturbation du service chez Postes Canada : des retards dans la livraison du courrier pourraient avoir lieu. Consultez notre <a href="https://www.bnc.ca/a-propos-de-nous/avis-importants.html">avis important</a> pour découvrir vos alternatives.</p>
+      </div>
+    </section>
+
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div class="hero-copy">
+          <h1>Envie de passer à l’action?</h1>
+          <p>Faites avancer vos projets dès aujourd’hui</p>
+          <a class="cta" href="#genesys-demo" onclick="setTimeout(openGenesysMessenger,100);">Commencez ici</a>
+        </div>
+        <div class="hero-art" aria-label="Image de démonstration inspirée de la page d'accueil Banque Nationale">
+          <div class="portrait"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="promos">
+      <div class="container promo-grid">
+        <article class="promo">
+          <img class="mini-img" src="https://www.bnc.ca/particuliers/_jcr_content/root/landmarks/responsivegrid/landmarks_1278961493/container_copy/responsivegrid_17220/container_copy/responsivegrid_60668_1294047146/responsivegrid_copy/container_copy/responsivegrid_copy/image_1158130927_cop.coreimg.svg/1773848356378/credit-card-color.svg" alt="">
+          <h2>Promo Mastercard World Elite</h2>
+          <p>Rénos, voyages, festivals : profitez des plaisirs de l’été en adhérant à une carte de crédit qui vous récompense pour vos dépenses. DEMO.</p>
+          <a href="https://www.bnc.ca/particuliers/cartes-credit.html">Découvrez la promo</a>
+        </article>
+        <article class="promo">
+          <img class="mini-img" src="https://www.bnc.ca/particuliers/_jcr_content/root/landmarks/responsivegrid/landmarks_1278961493/container_copy/responsivegrid_17220/container_copy/responsivegrid_60668_1294047146/responsivegrid_copy_/container_copy/responsivegrid_copy/image_1158130927_cop_358854823.coreimg.svg/1773848424060/picto-form-mortgage-color.svg" alt="">
+          <h2>Coup de pouce pour l’achat de maison</h2>
+          <p>Grâce à nos offres, bâtissez les bonnes conditions hypothécaires pour passer de la recherche d'une propriété à la remise des clés.</p>
+          <a href="https://www.bnc.ca/particuliers/hypotheques.html">Parcourez nos offres</a>
+        </article>
+        <article class="promo">
+          <img class="mini-img" src="https://www.bnc.ca/particuliers/_jcr_content/root/landmarks/responsivegrid/landmarks_1278961493/container_copy/responsivegrid_17220/container_copy/responsivegrid_60668_1294047146/responsivegrid_copy_625782544/container_copy/responsivegrid/image_copy_copy.coreimg.svg/1777302668591/picto-e-statements-color.svg" alt="">
+          <h2>Devenir proprio : mode d’emploi</h2>
+          <p>Acheter une première propriété exige une bonne préparation. Voici 6 questions à vous poser pour orienter votre réflexion.</p>
+          <a href="https://www.bnc.ca/particuliers/conseils/hypotheque.html">Partez du bon pied</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="recherche">
+      <div class="container">
+        <h2>Choisissez vos services bancaires</h2>
+        <div class="services">
+          <a class="service" href="https://www.bnc.ca/particuliers/comptes.html"><img src="https://www.bnc.ca/content/dam/bnc/particuliers/picto/picto-comptes-red.svg" alt="">Comptes</a>
+          <a class="service" href="https://www.bnc.ca/particuliers/cartes-credit.html"><img src="https://www.bnc.ca/content/dam/bnc/particuliers/picto/picto-carte-credit-red.svg" alt="">Cartes de crédit</a>
+          <a class="service" href="https://www.bnc.ca/particuliers/hypotheques.html"><img src="https://www.bnc.ca/content/dam/bnc/particuliers/picto/picto-mortgage-red.svg" alt="">Hypothèque</a>
+          <a class="service" href="https://www.bnc.ca/particuliers/epargne-placements.html"><img src="https://www.bnc.ca/content/dam/bnc/particuliers/picto/picto-epargne-placements-red.svg" alt="">Épargne et placements</a>
+          <a class="service" href="https://www.bnc.ca/particuliers/emprunts.html"><img src="https://www.bnc.ca/content/dam/bnc/particuliers/picto/picto-emprunts-red.svg" alt="">Emprunts</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="advice-intro">
+          <div>
+            <h2>Prenez le contrôle de vos finances avec nos conseils</h2>
+            <p>Soupers en terrasse, camps de jour, vacances : l’été rime souvent avec plus de dépenses. Avec nos conseils, réalisez vos projets estivaux, petits et grands, sans faire fondre vos finances. DEMO.</p>
+          </div>
+          <div class="advice-img"><img src="https://www.bnc.ca/particuliers/_jcr_content/root/landmarks/responsivegrid/landmarks_1278961493/container_copy/responsivegrid_17220/responsivegrid/responsivegrid_13740_759091428/responsivegrid_copy_/responsivegrid/image_copy_165981665.coreimg.svg/1762272150538/img-finance-accueil-nov.svg" alt=""></div>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-pic placeholder"></div>
+            <div class="card-body"><h3>Faites le point sur vos finances</h3><p>Pour des finances en santé, il faut d’abord les examiner. Revenus, dépenses, projets... c’est le moment de se poser et d’y penser!</p><a href="https://www.bnc.ca/particuliers/conseils/budget.html">Voyez comment faire</a></div>
+          </article>
+          <article class="card">
+            <div class="card-pic placeholder"></div>
+            <div class="card-body"><h3>Prenez vos dettes en main</h3><p>Pas toujours facile de gérer ses dettes, surtout en période d’instabilité ou d’imprévus. Découvrez comment prioriser vos actions.</p><a href="https://www.bnc.ca/particuliers/conseils/budget.html">Parcourez nos conseils utiles</a></div>
+          </article>
+          <article class="card">
+            <div class="card-pic placeholder"></div>
+            <div class="card-body"><h3>Définissez vos projets d’épargne et d’investissement</h3><p>Vous avez des idées plein la tête? Prenez l’habitude d’épargner puis d’investir pour réaliser vos projets.</p><a href="https://www.bnc.ca/particuliers/conseils/epargne-placements.html">Lisez nos astuces</a></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="help section" id="genesys-demo">
+      <div class="container">
+        <h2>Trouvez des réponses à vos questions</h2>
+        <div class="help-grid">
+          <article class="help-card">
+            <img class="bigicon" src="https://www.bnc.ca/content/dam/bnc/commun/picto/picto-ordinateur.svg" alt="">
+            <h3>Votre banque en ligne</h3>
+            <p>Effectuez la plupart de vos transactions facilement et rapidement.</p>
+            <a href="https://app.bnc.ca/">Connectez-vous</a>
+          </article>
+          <article class="help-card">
+            <img class="bigicon" src="https://www.bnc.ca/content/dam/bnc/commun/picto/picto-clavardage.svg" alt="">
+            <h3>Clavardez avec notre assistant virtuel</h3>
+            <p>Obtenez des réponses à vos questions à un seul endroit, 24 h/24, 7 j/7. DEMO Genesys Cloud Messenger.</p>
+            <a href="#genesys-demo" onclick="openGenesysMessenger();return false;">Posez une question</a>
+          </article>
+          <article class="help-card">
+            <img class="bigicon" src="https://www.bnc.ca/content/dam/bnc/commun/picto/picto-question.svg" alt="">
+            <h3>Centre d’aide</h3>
+            <p>Découvrez les réponses à vos questions regroupées dans notre foire aux questions.</p>
+            <a href="https://www.bnc.ca/aide.html">Accédez au Centre d’aide</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="sadc">
+      <div class="container">
+        <div class="sadc-box">SADC</div>
+        <a href="https://www.sadc.ca/">Membre de la Société d'assurance-dépôts du Canada (SADC)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-main">
+      <div class="footer-grid">
+        <section><h3>Liens utiles</h3><ul><li><a href="https://www.bnc.ca/particuliers/changement-adresse.html">Changement d'adresse</a></li><li><a href="https://www.bnc.ca/a-propos-de-nous/resolution-insatisfactions.html">Résolution des insatisfactions</a></li><li><a href="https://www.bnc.ca/taux-et-analyses/taux-de-change.html">Taux de change</a></li><li><a href="https://www.bnc.ca/taux-et-analyses/taux-interet.html">Taux d'intérêts</a></li></ul></section>
+        <section><h3>Aide et contact</h3><ul><li><a href="https://www.bnc.ca/aide.html">Nous joindre</a></li><li><a href="https://localisateur.bnc.ca/">Trouver une succursale</a></li><li><a href="https://www.bnc.ca/particuliers/prise-rendez-vous.html">Prendre rendez-vous</a></li><li><a href="https://www.bnc.ca/aide.html">Centre d'aide</a></li></ul></section>
+        <section><h3>ABC de la sécurité</h3><ul><li><a href="https://www.bnc.ca/securite.html">Sécurité et protection de la vie privée</a></li><li><a href="https://www.bnc.ca/securite/prevention-fraude.html">Prévention de la fraude</a></li><li><a href="https://www.bnc.ca/confidentialite.html">Politique de renseignements personnels</a></li><li><a href="https://www.bnc.ca/securite/carte-perdue-volee.html">Carte perdue ou volée</a></li></ul></section>
+        <section><h3>Nos filiales</h3><ul><li><a href="https://www.bnc.ca/a-propos-de-nous.html">Banque Nationale Trust</a></li><li><a href="https://www.bninvestissements.ca/">Banque Nationale Investissements</a></li><li><a href="https://www.natbank.com/">Natbank</a></li><li><a href="https://www.fbngp.ca/">Financière Banque Nationale</a></li></ul></section>
+        <section><h3>Actualité</h3><ul><li><a href="https://www.bnc.ca/a-propos-de-nous/salle-de-presse.html">Communiqués de presse</a></li><li><a href="https://www.bnc.ca/taux-et-analyses/actualite-economique.html">Actualité économique</a></li><li><a href="https://emplois.bnc.ca/">La vie à la Banque</a></li><li><a href="https://emplois.bnc.ca/">Offres d'emploi</a></li></ul><div class="social"><a href="https://www.facebook.com/banquenationale">f</a><a href="https://twitter.com/banquenationale">x</a><a href="https://www.youtube.com/user/banquenationaleducan">▶</a><a href="https://www.linkedin.com/company/national-bank-of-canada">in</a></div></section>
+      </div>
+    </div>
+    <div class="legal">
+      <div class="container">
+        <p>© BANQUE NATIONALE DU CANADA. Tous droits réservés 2026. Le logo BANQUE NATIONALE et FAIRE. AVANCER. sont des marques de commerce de la Banque Nationale du Canada. <b>DEMO ONLY - not an official BNC page.</b></p>
+        <div class="bottom-logo" aria-hidden="true"></div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="floating-open" type="button" onclick="openGenesysMessenger()">💬 DEMO chat</button>
+  <div class="status"><b>Genesys:</b> <span id="genesys-status">Snippet queued</span></div>
+</body>
+</html>
