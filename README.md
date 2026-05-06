@@ -36,3 +36,8 @@ If Messenger does not appear after publishing:
 4. Confirm an inbound message flow is assigned and published.
 5. If domain restrictions are enabled, add the GitHub Pages URL to the allowed domains.
 6. Test browser language preferences if you expect localized Messenger labels.
+
+
+## Assets
+
+The site includes `assets/genesys-logo.png`, the Genesys logo used throughout the page. Keep the `assets` folder with `index.html` when uploading to GitHub.
