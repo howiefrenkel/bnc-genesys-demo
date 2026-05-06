@@ -1,55 +1,38 @@
-# BNC-style Genesys Cloud Messenger demo page
+# Genesys Cloud Demo for BNC
 
-This is a static one-page demo site for hosting and testing a Genesys Cloud Messenger deployment.
-
-> **DEMO ONLY:** This is not an official Banque Nationale website. It uses public visual references and links for demo/testing purposes only.
+This is a static, GitHub Pages-ready demo site for hosting a Genesys Cloud Messenger deployment.
 
 ## Files
 
-- `index.html` - the complete static demo webpage, including the Genesys Cloud Messenger snippet.
-- `.nojekyll` - tells GitHub Pages not to process this as a Jekyll site.
-- `.gitignore` - standard local/editor exclusions.
+- `index.html` - the complete single-page demo site
+- `.nojekyll` - prevents GitHub Pages from running Jekyll processing
+- `.gitignore` - basic local development exclusions
 
-## Local preview
+## Deploy to GitHub Pages
 
-Open `index.html` in a browser, or run a local static server from this folder:
-
-```bash
-python3 -m http.server 8080
-```
-
-Then visit:
-
-```text
-http://localhost:8080
-```
-
-For the Genesys Messenger widget, testing from the final GitHub Pages HTTPS URL is recommended because Messenger deployments often depend on allowed domains and deployment configuration.
-
-## Deploy with GitHub Pages
-
-1. Create a new GitHub repository, for example `bnc-genesys-demo`.
-2. Upload all files in this folder to the repository root.
+1. Create a new GitHub repository.
+2. Upload these files to the root of the repository.
 3. Commit the files to the `main` branch.
-4. In GitHub, go to **Settings > Pages**.
-5. Under **Build and deployment**, set **Source** to **Deploy from a branch**.
-6. Set **Branch** to `main` and folder to `/root`.
-7. Click **Save**.
-8. GitHub Pages will publish the site at a URL like:
+4. Go to **Settings > Pages**.
+5. Under **Build and deployment**, choose **Deploy from a branch**.
+6. Select branch `main` and folder `/root`.
+7. Save.
+
+Your site will be published at a URL similar to:
 
 ```text
-https://YOUR-USERNAME.github.io/bnc-genesys-demo/
+https://YOUR-USERNAME.github.io/YOUR-REPO-NAME/
 ```
 
-## Genesys Cloud Messenger checklist
+## Genesys Cloud Messenger notes
 
-If the Messenger does not pop up on GitHub Pages, check the Genesys Cloud deployment:
+The Genesys Cloud Messenger snippet is already included in the `<head>` of `index.html`.
 
-1. The Messenger deployment is active.
-2. The deployment has a Messenger configuration assigned.
-3. The configuration has the correct apps/features enabled, such as Messenger conversation.
-4. An inbound Architect message flow is selected and published.
-5. If domain restriction is enabled, add your GitHub Pages URL/domain to the allowed domains.
-6. The deployment ID in `index.html` matches your Genesys Cloud deployment.
+If Messenger does not appear after publishing:
 
-The demo page also includes a red **DEMO chat** button and a small Genesys status box to help diagnose whether the Messenger script loaded and whether the open command succeeded.
+1. Confirm the Messenger deployment is active.
+2. Confirm the deployment is assigned to the correct Messenger configuration.
+3. Confirm the configuration has been published.
+4. Confirm an inbound message flow is assigned and published.
+5. If domain restrictions are enabled, add the GitHub Pages URL to the allowed domains.
+6. Test browser language preferences if you expect localized Messenger labels.
