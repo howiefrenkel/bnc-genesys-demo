@@ -44,8 +44,26 @@
       }
     }
     if (window.Genesys) {
+      Genesys('subscribe', 'Database.ready', function () {
+        Genesys('command', 'Database.set', {
+          messaging: {
+            customAttributes: {
+              displayName: 'BNC TestUser',
+              customerName: 'BNC TestUser',
+              firstName: 'BNC',
+              lastName: 'TestUser',
+              name: 'BNC TestUser',
+              demoContext: 'Genesys Cloud web messaging demo for BNC',
+              sourcePage: 'Genesys BNC GitHub Demo'
+            }
+          }
+        },
+        function () { setMessengerStatus('Customer data set: BNC TestUser.'); },
+        function (error) { setMessengerStatus('Customer data was not set: ' + (error && (error.message || error) || 'unknown error')); }
+        );
+      });
       Genesys('subscribe', 'Messenger.ready', function () {
-        setMessengerStatus('Messenger.ready received.');
+        setMessengerStatus('Messenger.ready received. Customer data should be set to BNC TestUser.');
       });
       Genesys('subscribe', 'Messenger.opened', function () { setMessengerStatus('Messenger is open.'); });
       Genesys('subscribe', 'Messenger.closed', function () { setMessengerStatus('Messenger closed.'); });
