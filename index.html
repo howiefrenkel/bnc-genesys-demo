@@ -43,6 +43,21 @@
         setMessengerStatus('Messenger open command failed: ' + e.message);
       }
     }
+    function getGenesysFlowLanguageFromBrowser() {
+      var browserLanguages = navigator.languages && navigator.languages.length
+        ? navigator.languages
+        : [navigator.language || 'en-US'];
+      var primaryLanguage = (browserLanguages[0] || 'en-US').toLowerCase();
+      var flowLanguage = 'en-US';
+      if (primaryLanguage.indexOf('fr') === 0) {
+        flowLanguage = 'fr-CA';
+      }
+      return {
+        browserLanguage: browserLanguages[0] || 'en-US',
+        browserLanguages: browserLanguages.join(','),
+        flowLanguage: flowLanguage
+      };
+    }
     if (window.Genesys) {
       Genesys('subscribe', 'Database.ready', function () {
         Genesys('command', 'Database.set', {
@@ -53,17 +68,21 @@
               firstName: 'BNC',
               lastName: 'TestUser',
               name: 'BNC TestUser',
+              browserLanguage: getGenesysFlowLanguageFromBrowser().browserLanguage,
+              browserLanguages: getGenesysFlowLanguageFromBrowser().browserLanguages,
+              flowLanguage: getGenesysFlowLanguageFromBrowser().flowLanguage,
+              preferredLanguage: getGenesysFlowLanguageFromBrowser().flowLanguage,
               demoContext: 'Genesys Cloud web messaging demo for BNC',
               sourcePage: 'Genesys BNC GitHub Demo'
             }
           }
         },
-        function () { setMessengerStatus('Customer data set: BNC TestUser.'); },
+        function () { setMessengerStatus('Customer data set: BNC TestUser; flowLanguage=' + getGenesysFlowLanguageFromBrowser().flowLanguage + '.'); },
         function (error) { setMessengerStatus('Customer data was not set: ' + (error && (error.message || error) || 'unknown error')); }
         );
       });
       Genesys('subscribe', 'Messenger.ready', function () {
-        setMessengerStatus('Messenger.ready received. Customer data should be set to BNC TestUser.');
+        setMessengerStatus('Messenger.ready received. Customer data should include BNC TestUser and browser flow language.');
       });
       Genesys('subscribe', 'Messenger.opened', function () { setMessengerStatus('Messenger is open.'); });
       Genesys('subscribe', 'Messenger.closed', function () { setMessengerStatus('Messenger closed.'); });

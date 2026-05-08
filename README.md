@@ -41,3 +41,26 @@ If Messenger does not appear after publishing:
 ## Assets
 
 The site includes `assets/genesys-logo.png`, the Genesys logo used throughout the page. Keep the `assets` folder with `index.html` when uploading to GitHub.
+
+## Browser language detection for Architect flow language
+
+The page now detects the visitor browser language with `navigator.languages` and writes these Messenger custom attributes through `Database.set`:
+
+- `browserLanguage` - the primary browser language, for example `fr-CA` or `en-US`
+- `browserLanguages` - the full browser language list as a comma-separated string
+- `flowLanguage` - normalized for Architect, currently either `fr-CA` or `en-US`
+- `preferredLanguage` - same value as `flowLanguage`
+
+In Genesys Cloud Architect, add a **Get Participant Data** action at the start of the inbound message flow and read the exact attribute name:
+
+```text
+flowLanguage
+```
+
+Store it in a string variable such as `Flow.BrowserLanguage`, then use a Decision action:
+
+```text
+Flow.BrowserLanguage == "fr-CA"
+```
+
+On the True branch, use **Set Language = French Canada (fr-CA)**. On the False branch, use **Set Language = English United States (en-US)**. Then continue to your bot flow or routing logic.
